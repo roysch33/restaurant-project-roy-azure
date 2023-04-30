@@ -51,10 +51,14 @@
         class="browser-default"
         name="category_id"
       >
-        <option value="" disabled selected>{{dish.category_id}}</option>
+        <option value="{{dish.category_id.id}}" selected>
+          {{dish.category_id}}
+        </option>
         {% for category in categories %}
+        <span></span>
+        {% if category.name != dish.category_id.name %}
         <option value="{{category.id}}">{{category.name}}</option>
-        {% endfor %}
+        {% endif %} {% endfor %}
       </select>
     </div>
     <div class="flex-container padding-div">
@@ -62,18 +66,12 @@
         {% if dish.is_gluten_free == True%}
         <input
           name="is_gluten_free"
-          value="{{dish.is_gluten_free}}"
           type="checkbox"
           class="filled-in"
           checked="checked"
         />
         {% else %}
-        <input
-          name="is_gluten_free"
-          value="{{dish.is_gluten_free}}"
-          type="checkbox"
-          class="filled-in"
-        />
+        <input name="is_gluten_free" type="checkbox" class="filled-in" />
         {% endif %}
         <span>מנה ללא גלוטן</span>
       </label>
@@ -83,18 +81,12 @@
         {% if dish.is_vegeterian == True%}
         <input
           name="is_vegeterian"
-          value="{{dish.is_vegeterian}}"
           type="checkbox"
           class="filled-in"
           checked="checked"
         />
         {% else %}
-        <input
-          name="is_vegeterian"
-          value="{{dish.is_vegeterian}}"
-          type="checkbox"
-          class="filled-in"
-        />
+        <input name="is_vegeterian" type="checkbox" class="filled-in" />
         {% endif %}
         <span>מנה צמחונית</span>
       </label>
@@ -108,7 +100,7 @@
       />
     </div>
     <div class="input_field flex-container padding-div">
-      <button class="waves-effect waves-light btn" type="submit">
+      <button name class="waves-effect waves-light btn" type="submit">
         ערוך מנה
       </button>
     </div>

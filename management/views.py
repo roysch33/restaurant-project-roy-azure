@@ -137,6 +137,7 @@ def edit_dish(request, id, dish_name):
         return render(request,'management/not_staff.html')
     dish = Dish.objects.get(id=id)
     categories = Category.objects.all()
+    category_id=""
     if request.method == 'POST':
         category = Category.objects.get(id=request.POST['category_id'])
         if request.POST['is_gluten_free'] == 'on':
@@ -156,7 +157,7 @@ def edit_dish(request, id, dish_name):
         dish.category_id= category
         dish.save()
         return redirect('manager-categories')
-    return render(request,'management/edit_dish.html', {'dish':dish, 'categories':categories})
+    return render(request,'management/edit_dish.html', {'dish':dish, 'categories':categories, "category_id":category_id})
 
 @login_required(login_url='main')
 def add_dish(request, ):
