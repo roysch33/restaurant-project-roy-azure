@@ -1,0 +1,66 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div>
+  {% for dish in dishes %} {% if category == dish.category_id%}
+  <form
+    action="{% url 'show-category' id=category.id category_name=category.name %}"
+    method="POST"
+    novalidate
+  >
+    {% csrf_token%}
+    <div class="flex-container">
+      <div class="col s12 m7">
+        <div class="card" style="width: 100vh">
+          <div class="card-image">
+            <img src="{{dish.image}}" />
+          </div>
+          <div class="card-content">
+            <h3
+              class="flex-container"
+              style="
+                text-align: right;
+                text-decoration: underline;
+                font-weight: bold;
+              "
+            >
+              {{dish.dish_name}}
+            </h3>
+            <h4 class="flex-container" style="text-align: right">
+              {{dish.description}}
+            </h4>
+            <br />
+            <h5 style="text-align: right">
+              מחיר: ₪<span style="font-weight: bold">{{dish.price}}</span>
+            </h5>
+            {% if dish.is_gluten_free == True %}
+            <h6 style="text-align: right">מנה נטולת גלוטן *</h6>
+            {% endif %} {% if dish.is_vegeterian == True %}
+            <h6 style="text-align: right">מנה צמחונית *</h6>
+            {% endif %}
+          </div>
+
+          <div class="card-action flex-container">
+            <select class="browser-default" name="amount">
+              <option value="" disabled selected>אנא בחר כמות פריטים</option>
+              {% for amount in amounts %}
+              <option value="{{amount}}">{{amount}}</option>
+              {% endfor %}
+            </select>
+            <button
+              style="width: 40%"
+              class="waves-effect waves-light btn"
+              type="submit"
+              name="dish"
+              value="{{dish.id}}"
+            >
+              הוסף לעגלה
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<br />
+<br />
+{% endif%} {% endfor %} {% endblock %}

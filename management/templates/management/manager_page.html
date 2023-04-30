@@ -1,0 +1,24 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="flex-container">
+  <h1>
+    !!!שלום
+    <span style="text-decoration: underline"
+      >{{request.user.first_name}} {{request.user.last_name}}</span
+    >
+  </h1>
+</div>
+<br />
+<div class="flex-container">
+  <span style="text-decoration: underline"
+    >{{request.user.last_login | timesince}}</span
+  >-לפני כ ,<span style="text-decoration: underline"
+    >{{request.user.last_login | date:'d/m/Y'}}
+  </span>
+  :פעם אחרונה אשר התחברת למערכת הייתה
+</div>
+<br />
+<div style="font-weight: bold" class="flex-container">
+  &#8593;הינך מוזמן לבחור מן האופציות המצויות מעלה&#8593;
+</div>
+<br />
+{% endblock %}

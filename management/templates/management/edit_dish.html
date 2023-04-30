@@ -1,0 +1,117 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <form
+    action="{% url 'edit-dish' id=dish.id dish_name=dish.dish_name %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <div class="flex-container padding-div">שם המנה</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם המנה"
+        name="dish_name"
+        value="{{dish.dish_name}}"
+      />
+    </div>
+    <div class="flex-container padding-div">תיאור המנה:</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder=">תיאור המנה"
+        name="description"
+        value="{{dish.description}}"
+      />
+    </div>
+    <div class="flex-container padding-div">מחיר המנה:</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder=">מחיר המנה"
+        name="price"
+        value="{{dish.price}}"
+      />
+    </div>
+    <div class="flex-container padding-div">dish image:</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="dish image"
+        name="image"
+        value="{{dish.image}}"
+      />
+    </div>
+    <div class="flex-container padding-div">
+      <select
+        style="text-align: right; background-color: white"
+        class="browser-default"
+        name="category_id"
+      >
+        <option value="" disabled selected>{{dish.category_id}}</option>
+        {% for category in categories %}
+        <option value="{{category.id}}">{{category.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="flex-container padding-div">
+      <label style="color: black">
+        {% if dish.is_gluten_free == True%}
+        <input
+          name="is_gluten_free"
+          value="{{dish.is_gluten_free}}"
+          type="checkbox"
+          class="filled-in"
+          checked="checked"
+        />
+        {% else %}
+        <input
+          name="is_gluten_free"
+          value="{{dish.is_gluten_free}}"
+          type="checkbox"
+          class="filled-in"
+        />
+        {% endif %}
+        <span>מנה ללא גלוטן</span>
+      </label>
+    </div>
+    <div class="flex-container padding-div">
+      <label style="color: black">
+        {% if dish.is_vegeterian == True%}
+        <input
+          name="is_vegeterian"
+          value="{{dish.is_vegeterian}}"
+          type="checkbox"
+          class="filled-in"
+          checked="checked"
+        />
+        {% else %}
+        <input
+          name="is_vegeterian"
+          value="{{dish.is_vegeterian}}"
+          type="checkbox"
+          class="filled-in"
+        />
+        {% endif %}
+        <span>מנה צמחונית</span>
+      </label>
+    </div>
+
+    <div class="input_field flex-container padding-div">
+      <img
+        style="width: 500px; height: 300px"
+        src="{{dish.image}}"
+        alt="{{dish.name}} image"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <button class="waves-effect waves-light btn" type="submit">
+        ערוך מנה
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content%}

@@ -1,0 +1,67 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <form
+    action="{% url 'edit-user' username=user.username id=user.id %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <div class="flex-container padding-div">שם משתמש :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם משתמש"
+        name="username"
+        value="{{user.username}}"
+      />
+    </div>
+    <div class="flex-container padding-div">
+      סיסמה חדשה (הסיסמה הקודמת מוצפנת לצורכי ביטחון):
+    </div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="סיסמה חדשה"
+        name="password"
+        value="{{user.password}}"
+      />
+    </div>
+    <div class="flex-container padding-div">שם פרטי :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם פרטי"
+        name="first_name"
+        value="{{user.first_name}}"
+      />
+    </div>
+    <div class="flex-container padding-div">שם משפחה :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם משפחה"
+        name="last_name"
+        value="{{user.last_name}}"
+      />
+    </div>
+    <div class="flex-container padding-div">אמייל :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="אמייל"
+        name="email"
+        value="{{user.email}}"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <button class="waves-effect waves-light btn" type="submit">
+        שנה פרטים של משתמש זה
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content%}

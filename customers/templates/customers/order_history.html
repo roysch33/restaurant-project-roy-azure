@@ -1,0 +1,35 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="flex-container">
+  <h2 style="font-weight: bold">היסטוריית הזמנות</h2>
+</div>
+<div class="flex-container">
+  <table class="normal_table" style="background-color: white">
+    <tr>
+      <th class="normal_inside_table">מספר עגלה</th>
+      <th class="normal_inside_table">האם המשלוח התקבל</th>
+      <th class="normal_inside_table">כתובת משלוח</th>
+      <th class="normal_inside_table">הערות</th>
+      <th class="normal_inside_table">תאריך שנשלח המשלוח</th>
+    </tr>
+    {% for delivery in user_deliveries %}
+    <tr>
+      <td class="normal_inside_table">{{delivery.order_id.id}}</td>
+      {% if delivery.is_delivered == True %}
+      <td style="text-decoration: underline" class="normal_inside_table">
+        כן!
+      </td>
+      {%else%}
+      <td style="text-decoration: underline" class="normal_inside_table">
+        טרם
+      </td>
+      {% endif %}
+      <td class="normal_inside_table">{{delivery.address}}</td>
+      <td class="normal_inside_table">{{delivery.comment}}</td>
+      <td class="normal_inside_table">{{delivery.created}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<br />
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <form action="{% url 'add-category' %}" method="POST">
+    {% csrf_token %}
+    <div class="flex-container padding-div">שם הקטגוריה</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם הקטגוריה"
+        name="name"
+      />
+    </div>
+    <div class="flex-container padding-div">תמונה של הקטגוריה</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="קישור לתמונה של הקטגוריה"
+        name="image"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <button class="waves-effect waves-light btn" type="submit">
+        הוסף קטגוריה
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content%}

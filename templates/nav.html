@@ -1,0 +1,74 @@
+<nav style="background-color: rgba(245, 222, 179, 0.814)">
+  {% if request.user.is_authenticated %}
+
+  <!--יוצג בחיבור מנהל-->
+  {% if request.user.is_staff == True %}
+  <div style="color: black; font-weight: bold" class="flex-container">
+    <span class="flex-container">
+      <a style="color: black" href="{% url 'manager-page'%}">דף מנהלים ראשי</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'manager-deliveries'%}"
+        >ניהול משלוחים</a
+      >
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'manager-categories'%}"
+        >ניהול תפריט</a
+      >
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'add-category'%}"
+        >הוספת קטגוריה לתפריט</a
+      >
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'add-dish'%}">הוספת מנה לתפריט</a>
+      <br /><br /><br /><br />
+      <a
+        style="color: black"
+        href="{% url 'edit-user' id=request.user.id username=request.user.username%}"
+        >ערוך משתמש מנהל</a
+      >
+      <a style="color: black" href="{% url 'logout' %}">יציאה</a>
+    </span>
+  </div>
+
+  <!--יוצג בחיבור לקוח-->
+  {% else %}
+  <div style="color: black; font-weight: bold" class="flex-container">
+    <span class="flex-container">
+      <a style="color: black" href="{% url 'menu'%}">תפריט המסעדה</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'show-cart'%}">עגלה</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'order-history'%}"
+        >היסטוריית משלוחים</a
+      >
+      <br /><br /><br /><br />
+      <a
+        style="color: black"
+        href="{% url 'edit-user'  id=request.user.id username=request.user.username%}"
+        >ערוך משתמש</a
+      >
+      <a style="color: black" href="{% url 'logout' %}">יציאה</a>
+    </span>
+  </div>
+
+  {% endif %}
+
+  <!--יוצג לפני חיבור-->
+  {% else %}
+
+  <div style="color: black; font-weight: bold" class="flex-container">
+    <span class="flex-container">
+      <a style="color: black" href="{% url 'main'%}">עמוד ראשי</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'signup'%}">הרשמת לקוחות חדשים</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'login'%}">כניסת משתמש / מנהל</a>
+      <br /><br /><br /><br />
+      <a style="color: black" href="{% url 'manager-signup'%}"
+        >הרשמת מנהלים חדשים</a
+      >
+    </span>
+  </div>
+  <hr />
+  {% endif %}
+</nav>

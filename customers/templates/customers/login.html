@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} {% block content %}
+<span class="flex-container">
+  {% if not_ok == True %}
+
+  <h3
+    style="
+      color: red;
+      font-size: 14px;
+      width: 100%;
+      width: 100%;
+      text-align: right;
+    "
+  >
+    *שם המשתמש או הסיסמה אינם נכונים, אנא נסה שנית
+  </h3>
+  {% endif %}
+</span>
+<form action="{% url 'login' %}" method="POST" novalidate>
+  {% csrf_token%}
+  <div class="flex-container padding-div">
+    <input
+      style="text-align: right; background-color: white"
+      type="text"
+      name="username"
+      placeholder="שם משתמש"
+    />
+  </div>
+  <div class="flex-container padding-div">
+    <input
+      style="text-align: right; background-color: white"
+      type="password"
+      name="password"
+      placeholder="סיסמה"
+    />
+  </div>
+  <div class="flex-container padding-div">
+    <button style="width: 30%; height: 50px" type="submit">כניסת משתמש</button>
+  </div>
+</form>
+
+<br />
+<br />
+<h5 style="text-align: center" class="flex-container">
+  &#128516;אין משתמש עדין? אין שום בעיה! בחר מלמעלה את האופציה אשר תרצה איתה
+  להירשם
+</h5>
+{% endblock %}

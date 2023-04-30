@@ -1,0 +1,61 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+  <div>
+    <h2
+      class="flex-container"
+      style="text-decoration: underline; font-weight: bolder"
+    >
+      קטגוריות
+    </h2>
+    <br />
+    <h4 class="flex-container">
+      לחץ על תמונת הקטגוריה על מנת לגשת למנות המשוייכות לה
+    </h4>
+    <br />
+  </div>
+  <br /><br />
+  <div class="flex-wrap flex-container">
+    {% for category in categories %}
+    <div style="width: 33%">
+      <div
+        class="flex-wrap flex-container"
+        style="text-decoration: underline; font-weight: bold"
+      >
+        {{category.name}}
+      </div>
+      <div class="flex-container padding-div">
+        <a
+          href="{% url 'edit-category' id=category.id category_name=category.name %}"
+        >
+          <div class="input_field padding-div">
+            <button class="waves-effect waves-light btn" type="submit">
+              ערוך קטגוריה
+            </button>
+          </div></a
+        >
+        <form
+          action="{% url 'delete-category' id=category.id category_name=category.name%}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <div class="padding-div">
+            <button type="submit" class="btn btn waves-effect waves-light red">
+              מחק קטגוריה
+            </button>
+          </div>
+        </form>
+      </div>
+      <br />
+      <a
+        class="flex-wrap flex-container"
+        href="{% url 'show-dishes' id=category.id category_name=category.name %}"
+        ><img
+          style="height: 350px; width: 100%"
+          src="{{category.image}}"
+          alt="category image" /></a
+      ><br /><br />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

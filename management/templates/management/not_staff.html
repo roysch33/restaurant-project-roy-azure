@@ -1,0 +1,21 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="flex-container">
+  <h1 style="color: red; text-align: center">
+    לא קיים למשתמש זה גישה לכתובת זאת
+  </h1>
+</div>
+<div class="flex-container">
+  <img
+    style="height: 300px; width: 300px"
+    src="https://media.tenor.com/_4YgA77ExHEAAAAd/rick-roll.gif"
+    alt="rickroll GIF"
+  />
+</div>
+<br />
+<br />
+<div class="flex-container" style="font-weight: bold">
+  <a href="{% url 'menu'%}">לחץ עלי לחזור לתפריט המסעדה</a>
+</div>
+<br />
+<br />
+{% endblock %}

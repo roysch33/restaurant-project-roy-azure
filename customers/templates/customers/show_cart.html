@@ -1,0 +1,91 @@
+{% extends 'layout.html' %} {% block content %}
+<div></div>
+{% if user_doesnt_have_a_cart == 0 %}
+<div class="flex-container">אין לך פריטים בעגלה</div>
+{% endif %}
+<p></p>
+{% for item in items %}
+<p></p>
+{% for dish in dishes%}
+<p></p>
+<p></p>
+{% if item.cart_id == cart %}
+<p></p>
+{% if item.dish_id == dish %}
+
+<div class="flex-container">
+  <div class="col s12 m7">
+    <div class="card" style="width: 100vh">
+      <div class="card-image">
+        <img src="{{dish.image}}" />
+      </div>
+      <div class="card-content">
+        <h3
+          class="flex-container"
+          style="
+            text-align: right;
+            text-decoration: underline;
+            font-weight: bold;
+          "
+        >
+          {{dish.dish_name}}
+        </h3>
+        <br />
+        <h5 style="text-align: right">
+          מחיר המנה:
+          <span style="font-weight: bold">₪{{dish.price}}</span>
+        </h5>
+        <br />
+        <h5 style="text-align: right">
+          כמות הפריטים: <span style="font-weight: bold">{{item.amount}}</span>
+        </h5>
+        <br />
+        <h5 style="text-align: right">
+          סה״כ תשלום:
+          <span style="font-weight: bold"
+            >₪{% widthratio item.amount 1 dish.price %}</span
+          >
+        </h5>
+        <form
+          action="{% url 'delete-item-in-cart' id=item.id item_name=item.dish_id.dish_name%}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <div style="text-align: right" class="padding-div">
+            <button type="submit" class="btn btn waves-effect waves-light red">
+              הסר פריטים מעגלת הקניות
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}{% endif %}{% endfor %}{% endfor %}
+<h3
+  style="text-decoration: underline; font-weight: bolder"
+  class="flex-container"
+>
+  סה״כ תשלום סופי : ₪{{full_amount}}
+</h3>
+<br />
+<br />
+<div class="flex-container">
+  <a
+    style="
+      font-weight: bolder;
+      border: 2px solid black;
+      border-radius: 25px;
+      padding: 4px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background-color: white;
+    "
+    href="{% url 'show-delivery' id=cart.id%}"
+    >אישור ומעבר למשלוח</a
+  >
+</div>
+<br />
+<br />
+<br /><br /><br />
+{% endblock %}

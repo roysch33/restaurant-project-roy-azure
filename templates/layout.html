@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>מסעדה</title>
+    <link rel="stylesheet" href="{% static 'materialize.css' %}" />
+    <style>
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      body {
+        border: 2px;
+        border-color: black;
+        background-image: url("https://cdn.wallpapersafari.com/94/6/Ktruqd.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+      .flex-container {
+        display: flex;
+        justify-content: center;
+      }
+      .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .padding-div {
+        padding: 5px;
+      }
+      .middle {
+        width: 50vh;
+      }
+      nav a {
+        padding: 10px;
+      }
+      table {
+        border: 2px;
+        border-color: black;
+        border-style: solid;
+        border-bottom: 2px;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 5px;
+      }
+      td {
+        border: 2px;
+        border-color: black;
+        border-style: solid;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 5px;
+      }
+      .normal_table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 5px;
+      }
+      .normal_inside_table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'nav.html'%}
+    <br /><br />
+    <div
+      style="
+        width: 90%;
+        height: 90%;
+        background-color: wheat;
+        padding: 10px;
+        border-radius: 10px;
+      "
+      class="container"
+    >
+      {% block content%} {% endblock %}
+    </div>
+  </body>
+</html>
+
+<!--    <link rel="stylesheet" href="{% static 'materialize.css' %}" />-->

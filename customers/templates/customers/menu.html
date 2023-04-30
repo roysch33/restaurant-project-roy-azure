@@ -1,0 +1,38 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+  <pre style="font-size: large" class="flex-container">
+    <span style="font-weight: bold"
+      >{{request.user.first_name}} {{request.user.last_name}}</span> :ברוכים השבים 
+    
+  </pre>
+  <div>
+    <h2
+      class="flex-container"
+      style="text-decoration: underline; font-weight: bolder"
+    >
+      תפריט המסעדה
+    </h2>
+    <br />
+  </div>
+  <br /><br />
+
+  <div>
+    {% for category in categories %}
+    <div
+      class="flex-container"
+      style="text-decoration: underline; font-weight: bold"
+    >
+      {{category.name}}
+    </div>
+    <br />
+    <a
+      class="flex-container"
+      href="{% url 'show-category' id=category.id category_name=category.name %}"
+      ><img
+        style="height: 350px; width: 550px"
+        src="{{category.image}}"
+        alt="category image" /></a
+    ><br /><br />{% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends 'layout.html' %} {% block content %}
+<form action="{% url 'manager-signup' %}" method="POST" novalidate>
+  {% csrf_token%}
+  <div>
+    <span class="flex-container">
+      {% if the_manager_code != "123123" %} {% if the_manager_code != "" %}
+      <h3
+        name="error"
+        value="True"
+        style="
+          color: red;
+          font-size: 14px;
+          width: 100%;
+          width: 100%;
+          text-align: right;
+        "
+      >
+        *{{errors.manager_code_wrong}}
+      </h3>
+
+      {% endif %}{% endif %}
+    </span>
+    <span class="flex-container">
+      {% if the_manager_code == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="
+          color: red;
+          font-size: 14px;
+          width: 100%;
+          width: 100%;
+          text-align: right;
+        "
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </span>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="manager_code"
+        placeholder="קוד סודי לצורך פתיחת חשבון מנהל"
+        value="{{the_manager_code}}"
+      />
+    </div>
+    <span class="flex-container"
+      >{% if unique == False %}
+      <h3
+        name="error"
+        value="True"
+        style="
+          color: red;
+          font-size: 14px;
+          width: 100%;
+          width: 100%;
+          text-align: right;
+        "
+      >
+        *{{errors.not_unique}}
+      </h3>
+      {% endif %}
+    </span>
+    <span class="flex-container">
+      {% if the_username == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="
+          color: red;
+          font-size: 14px;
+          width: 100%;
+          width: 100%;
+          text-align: right;
+        "
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </span>
+    <span class="flex-container">
+      {% if error == 'short_name' %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.username_must_be_long}}
+      </h3>
+      {% endif %}
+    </span>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="username"
+        placeholder="שם משתמש"
+      />
+    </div>
+    <span class="flex-container">
+      {% if the_password == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </span>
+    <span class="flex-container">
+      {% if error2 == 'short_password' %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.password_must_be_long}}
+      </h3>
+      {% endif %}
+    </span>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="password"
+        placeholder="סיסמה"
+      />
+    </div>
+    <div class="flex-container padding-div">
+      {% if the_first_name == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </div>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="first_name"
+        placeholder="שם פרטי"
+        value="{{the_first_name}}"
+      />
+    </div>
+    <div class="flex-container padding-div">
+      {% if the_last_name == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </div>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="last_name"
+        placeholder="שם משפחה"
+        value="{{the_last_name}}"
+      />
+    </div>
+    <span class="flex-container">
+      {% if email_check == False %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.not_valid_email}}
+      </h3>
+      {% endif %}
+    </span>
+    <div class="flex-container padding-div">
+      {% if the_email == "" %}
+      <h3
+        name="error"
+        value="True"
+        style="color: red; font-size: 14px; width: 100%; text-align: right"
+      >
+        *{{errors.field_required}}
+      </h3>
+      {% endif %}
+    </div>
+    <div class="flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        name="email"
+        placeholder="אימייל"
+        value="{{the_email}}"
+      />
+    </div>
+    <br /><br />
+    <div class="flex-container padding-div">
+      <button style="width: 30%; height: 50px" type="submit">הרשמה</button>
+    </div>
+  </div>
+</form>
+<br /><br />
+<br />
+<br />
+{% endblock %}

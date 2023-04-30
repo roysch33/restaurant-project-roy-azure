@@ -1,0 +1,64 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="flex-container">
+  <h2 style="font-weight: bold">היסטוריית משלוחים</h2>
+</div>
+<div class="flex-container">
+  <table class="normal_table" style="background-color: white">
+    <tr>
+      <th class="normal_inside_table">שם הלקוח</th>
+      <th class="normal_inside_table">מספר עגלה</th>
+      <th class="normal_inside_table">האם המשלוח התקבל</th>
+      <th class="normal_inside_table">כתובת משלוח</th>
+      <th class="normal_inside_table">הערות</th>
+      <th class="normal_inside_table">תאריך שנשלח המשלוח</th>
+    </tr>
+    {% for delivery in deliveries %}
+    <form action="{% url 'manager-deliveries'%}" method="POST">
+      {% csrf_token %}
+      <tr>
+        <td style="text-decoration: underline" class="normal_inside_table">
+          {{delivery.order_id.user_id.first_name}}
+          {{delivery.order_id.user_id.last_name}}
+        </td>
+        <td
+          name="delivery_order_id_id"
+          value="{{delivery.order_id.id}}"
+          class="normal_inside_table"
+        >
+          {{delivery.order_id.id}}
+        </td>
+        <td class="normal_inside_table">
+          {% if delivery.is_delivered == True %} כן!
+          <div class="input_field flex-container padding-div">
+            <button
+              class="waves-effect waves-light btn"
+              type="submit"
+              name="delivery"
+              value="{{delivery.order_id.id}}"
+            >
+              לחץ להחזרת סטטוס טרם נשלח
+            </button>
+          </div>
+          {% else %} טרם
+          <div class="input_field flex-container padding-div">
+            <button
+              class="waves-effect waves-light btn"
+              type="submit"
+              name="delivery"
+              value="{{delivery.order_id.id}}"
+            >
+              לחץ לאישור קבלת משלוח
+            </button>
+          </div>
+          {% endif %}
+        </td>
+        <td class="normal_inside_table">{{delivery.address}}</td>
+        <td class="normal_inside_table">{{delivery.comment}}</td>
+        <td class="normal_inside_table">{{delivery.created}}</td>
+      </tr>
+    </form>
+    {% endfor %}
+  </table>
+</div>
+<br />
+{% endblock %}

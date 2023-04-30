@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <form action="{% url 'show-delivery' id=cart.id  %}" method="POST">
+    {% csrf_token %}
+    <div class="flex-container padding-div">כתובת המשלוח</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="כתובת המשלוח"
+        name="address"
+      />
+    </div>
+    <div class="flex-container padding-div">הערות נוספות</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="הערות נוספות"
+        name="comment"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <button class="waves-effect waves-light btn" type="submit">
+        שליחת פרטי ההזמנה
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

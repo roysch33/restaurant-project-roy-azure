@@ -1,0 +1,42 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <form
+    action="{% url 'edit-category' id=category.id category_name=category.name %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <div class="flex-container padding-div">שם קטגוריה :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: right; background-color: white"
+        type="text"
+        placeholder="שם קטגוריה"
+        name="name"
+        value="{{category.name}}"
+      />
+    </div>
+    <div class="flex-container padding-div">קישור לתמונת קטגוריה :</div>
+    <div class="input_field flex-container padding-div">
+      <input
+        style="text-align: left; background-color: white"
+        type="text"
+        placeholder="קישור לתמונת קטגוריה"
+        name="image"
+        value="{{category.image}}"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <img
+        style="width: 500px; height: 300px"
+        src="{{category.image}}"
+        alt="{{category.name}} image"
+      />
+    </div>
+    <div class="input_field flex-container padding-div">
+      <button class="waves-effect waves-light btn" type="submit">
+        ערוך קטגוריה
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content%}
