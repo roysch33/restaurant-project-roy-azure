@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r*s6f4r4(ai=_ge5ps!v4f5vru%q3tkl+#j8(&&=#o+hgcp&bg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["roys-last-project-container.blueflower-fa487955.germanywestcentral.azurecontainerapps.io","127.0.0.1"]
 

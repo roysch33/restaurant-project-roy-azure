@@ -166,11 +166,11 @@ def add_dish(request, ):
     categories = Category.objects.all()
     if request.method == 'POST':
         category = Category.objects.get(id=request.POST['category_id'])
-        if request.POST['is_gluten_free'] == 'on':
+        if request.POST.get('is_gluten_free') == 'on':
             gluten_free = True
         else:
             gluten_free = False
-        if request.POST['is_vegeterian'] == 'on':
+        if request.POST.get("is_vegeterian") == 'on':
             vegeterian = True
         else:
             vegeterian = False
