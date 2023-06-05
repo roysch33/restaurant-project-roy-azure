@@ -5,6 +5,9 @@ class Category (models.Model):
     name = models.CharField(max_length=200, blank=False)
     image = models.CharField(max_length=200, blank=False)
 
+    class Meta:
+        db_table = "category"
+
     def __str__(self) -> str:
         return self.name
 
@@ -16,6 +19,9 @@ class Dish (models.Model):
     is_gluten_free = models.BooleanField (default=False)
     is_vegeterian = models.BooleanField (default=False)
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)  
+
+    class Meta:
+        db_table = "dish"
     
     def __str__(self) -> str:
         return self.dish_name

@@ -23,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r*s6f4r4(ai=_ge5ps!v4f5vru%q3tkl+#j8(&&=#o+hgcp&bg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["roys-last-project-container.blueflower-fa487955.germanywestcentral.azurecontainerapps.io","127.0.0.1"]
 
 # Application definition
 
@@ -39,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customers',
     'management'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://roys-last-project-container.blueflower-fa487955.germanywestcentral.azurecontainerapps.io"
 ]
 
 MIDDLEWARE = [
@@ -79,9 +82,13 @@ WSGI_APPLICATION = 'Restaurant.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'royadmin',
+        'PASSWORD': 'Imanadmin123',
+        'HOST': 'roys-last-project-db.postgres.database.azure.com',
+        'PORT': ''
+}
 }
 
 
@@ -109,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'asia/jerusalem'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

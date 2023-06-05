@@ -7,6 +7,7 @@ from django.contrib.auth import login ,authenticate, logout
 
 from .models import Cart, Item, Delivery
 from management.models import Category, Dish
+
 # Create your views here.
 
 def main(request):
